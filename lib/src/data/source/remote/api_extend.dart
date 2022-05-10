@@ -10,25 +10,3 @@ class SpecialCode {
 
   // add more, ex: token fail, ...
 }
-
-enum ApiMethod { get, post, put, delete }
-
-enum ApiBodyType { form, json, formUrlencoded }
-
-class ApiData {
-  final String path;
-  final ApiMethod method;
-  final Map<String, dynamic>? queryParams;
-  final Map<String, String>? headers;
-  final dynamic params;
-  final ApiBodyType? bodyType;
-
-  ApiData({
-    required this.method,
-    this.path = "",
-    this.queryParams = const {},
-    this.headers = const {},
-    this.params = const {},
-    this.bodyType = ApiBodyType.json,
-  });
-}

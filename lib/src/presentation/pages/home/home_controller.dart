@@ -11,7 +11,7 @@ class HomeController extends GetxController {
     getHeadlines();
   }
 
-  void getHeadlines() async {
+  void getHeadlines({String? country}) async {
     final response = await articleRepository.getHeadlines(
       category: "business",
       country: "us",

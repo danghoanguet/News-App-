@@ -5,6 +5,7 @@ import 'package:getx_clean_base/src/data/models/article_model.dart';
 import 'package:getx_clean_base/src/presentation/pages/home/home_controller.dart';
 
 import '../../../core/constants/app_color.dart';
+import '../../../data/models/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,12 +27,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final argumentData = Get.arguments;
+
+    final _userController = Get.find<UserController>();
+    final String countries = 'aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza';
+    int index = 0;
+    //aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
-        automaticallyImplyLeading: false,
+        title: Text("Hello ${argumentData['username']}"),
+        //automaticallyImplyLeading: false,
       ),
-      body: _buildArticleList(),
+      body: RefreshIndicator(
+          onRefresh:() async => controller.getHeadlines(),          child: _buildArticleList()),
     );
   }
 

@@ -8,8 +8,8 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build run');
     final SignInController _controller = Get.put(SignInController());
-    final UserController _userController = Get.put(UserController());
     return Scaffold(
       body: GestureDetector(
         child: Container(
@@ -61,9 +61,7 @@ class SignInPage extends StatelessWidget {
                         ),
                         validator: _controller.emailValidator,
                         keyboardType: TextInputType.emailAddress,
-                        onChanged: (value) => {
-                          _controller.onChange()
-                        },
+                        onChanged: (value) => {_controller.onChange()},
                       ),
                     ),
                     const SizedBox(

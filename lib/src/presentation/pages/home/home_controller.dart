@@ -18,6 +18,7 @@ class HomeController extends GetxController {
     );
     if (response != null) {
       articles.value = response;
+      print('controller home controller: ${articles.value.length}');
     }
   }
 }

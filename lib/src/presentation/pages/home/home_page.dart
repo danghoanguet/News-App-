@@ -22,24 +22,20 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.init();
+      print('controller home page: ${controller.articles.length}');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final argumentData = Get.arguments;
-
-    final _userController = Get.find<UserController>();
-    final String countries = 'aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza';
-    int index = 0;
-    //aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello ${argumentData['username']}"),
+        title: Text("Hello "),
         //automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
-          onRefresh:() async => controller.getHeadlines(),          child: _buildArticleList()),
+          onRefresh: () async => controller.getHeadlines(),
+          child: _buildArticleList()),
     );
   }
 

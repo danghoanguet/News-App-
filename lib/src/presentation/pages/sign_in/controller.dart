@@ -111,6 +111,9 @@ class SignInController extends GetxController {
   }
 
   void toggleSignUp() {
+    isSubmit.value = false;
+    isUseNameEmpty.value = true;
+    isEmailEmpty.value = true;
     emailController.value.clear();
     passwordController.value.clear();
     userNameController.value.clear();

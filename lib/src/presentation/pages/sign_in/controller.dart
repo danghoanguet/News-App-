@@ -10,6 +10,9 @@ class SignInController extends GetxController {
   var emailController = TextEditingController().obs;
   var passwordController = TextEditingController().obs;
   var userNameController = TextEditingController().obs;
+  var emailFocusNode = FocusNode().obs;
+  var userNameFocusNode = FocusNode().obs;
+  var passwordFocusNode = FocusNode().obs;
   var isUseNameEmpty = true.obs;
   var isEmailEmpty = true.obs;
   var isSubmit = false.obs;
@@ -134,20 +137,32 @@ class SignInController extends GetxController {
     userNameController.value.clear();
   }
 
+  void unFocus() {
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
+      userNameFocusNode.value.unfocus();
+      emailFocusNode.value.unfocus();
+      passwordFocusNode.value.unfocus();
+    }
+  }
+
   Widget passwordSuffixIcon() {
     return GestureDetector(
       onTap: toggleObscureText,
       child: isObscureText.value
-          ? Icon(Icons.remove_red_eye)
-          : Icon(Icons.remove_red_eye_outlined),
+          ? const Icon(Icons.remove_red_eye)
+          : const Icon(Icons.remove_red_eye_outlined),
     );
   }
 
-  Widget emailSuffixIcon() {
-    return GestureDetector(onTap: clearEmail, child: Icon(Icons.clear));
+  Widget? emailSuffixIcon() {
+    return isEmailEmpty.value == true
+        ? null
+        : GestureDetector(onTap: clearEmail, child: Icon(Icons.clear));
   }
 
-  Widget userNameSuffixIcon() {
-    return GestureDetector(onTap: clearUserName, child: Icon(Icons.clear));
+  Widget? userNameSuffixIcon() {
+    return isUseNameEmpty.value == true
+        ? null
+        : GestureDetector(onTap: clearUserName, child: Icon(Icons.clear));
   }
 }

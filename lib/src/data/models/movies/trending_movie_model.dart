@@ -1,7 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../source/remote/api_extend.dart';
+
 @JsonSerializable()
-class MovieModel {
+class TrendingMovieModel {
   String? originalTitle;
   String? posterPath;
   String? title;
@@ -18,7 +20,7 @@ class MovieModel {
   double? popularity;
   String? mediaType;
 
-  MovieModel(
+  TrendingMovieModel(
       {this.originalTitle,
       this.posterPath,
       this.title,
@@ -35,7 +37,7 @@ class MovieModel {
       this.popularity,
       this.mediaType});
 
-  MovieModel.fromJson(Map<String, dynamic> json) {
+  TrendingMovieModel.fromJson(Map<String, dynamic> json) {
     originalTitle = json['original_title'];
     posterPath = json['poster_path'];
     title = json['title'];

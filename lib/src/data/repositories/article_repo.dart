@@ -13,7 +13,7 @@ abstract class IArticleRepository {
 }
 
 class ArticleRepositoryImpl extends IArticleRepository {
-  final client = Get.find<ApiClient>();
+  final client = Get.find<ApiNewsClient>();
 
   @override
   Future<List<ArticleModel>?> getHeadlines({

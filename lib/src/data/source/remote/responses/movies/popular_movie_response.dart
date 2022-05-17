@@ -1,26 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../models/movie_model.dart';
+import '../../../../models/movies/popular_movie_model.dart';
 
 @JsonSerializable()
-class MovieResponse {
+class PopularMovieResponse {
   int? page;
-  List<MovieModel>? results;
+  List<PopularMovieModel>? results;
   int? totalPages;
   int? totalResults;
 
-  MovieResponse({this.page, this.results, this.totalPages, this.totalResults});
+  PopularMovieResponse(
+      {this.page, this.results, this.totalPages, this.totalResults});
 
-  MovieResponse.fromJson(Map<String, dynamic> json) {
+  PopularMovieResponse.fromJson(Map<String, dynamic> json) {
     page = json['page'];
+    results = <PopularMovieModel>[];
     if (json['results'] != null) {
-      results = <MovieModel>[];
       json['results'].forEach((v) {
-        results!.add(new MovieModel.fromJson(v));
+        results!.add(new PopularMovieModel.fromJson(v));
       });
     }
-    totalPages = json['total_pages'];
-    totalResults = json['total_results'];
+    print(results);
+    totalPages = json['total_pages'] ?? 0;
+    totalResults = json['total_results'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

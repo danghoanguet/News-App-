@@ -11,7 +11,13 @@ class SignInPage extends StatelessWidget {
     print('build run');
     final SignInController _controller = Get.put(SignInController());
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      extendBodyBehindAppBar: true,
       body: GestureDetector(
+        onTap: _controller.unFocus,
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -30,14 +36,12 @@ class SignInPage extends StatelessWidget {
                   children: [
                     Obx(() => _controller.isSignUp.value
                         ? TextFormField(
+                            focusNode: _controller.userNameFocusNode.value,
                             controller: _controller.userNameController.value,
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
-                              label: Text("User name"),
-                              suffixIcon:
-                                  _controller.isUseNameEmpty.value != true
-                                      ? _controller.userNameSuffixIcon()
-                                      : null,
+                              label: const Text("User name"),
+                              suffixIcon: _controller.userNameSuffixIcon(),
                             ),
                             validator: _controller.userNameValidator,
                             onChanged: (_) => {
@@ -45,19 +49,18 @@ class SignInPage extends StatelessWidget {
                               // _controller.isSignUp.value  ? _controller.signUp() : _controller.logIn()
                             },
                           )
-                        : Container()),
+                        : const SizedBox()),
                     const SizedBox(
                       height: 20,
                     ),
                     Obx(
                       () => TextFormField(
+                        focusNode: _controller.emailFocusNode.value,
                         controller: _controller.emailController.value,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          label: Text("Email"),
-                          suffixIcon: _controller.isEmailEmpty.value != true
-                              ? _controller.emailSuffixIcon()
-                              : null,
+                          label: const Text("Email"),
+                          suffixIcon: _controller.emailSuffixIcon(),
                         ),
                         validator: _controller.emailValidator,
                         keyboardType: TextInputType.emailAddress,
@@ -69,6 +72,8 @@ class SignInPage extends StatelessWidget {
                     ),
                     Obx(
                       () => TextFormField(
+                        focusNode: _controller.passwordFocusNode.value,
+
                         controller: _controller.passwordController.value,
                         obscureText: _controller.isObscureText.value,
                         decoration: InputDecoration(
@@ -97,14 +102,14 @@ class SignInPage extends StatelessWidget {
                           ),
                           child: Text(
                             _controller.isSignUp.value ? 'Sign up' : 'Log in',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                             ),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Obx(
@@ -115,22 +120,24 @@ class SignInPage extends StatelessWidget {
                               _controller.isSignUp.value
                                   ? 'Already have an account?'
                                   : 'Don\'t have an account?',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 15,
                               )),
-                          SizedBox(
+                          const SizedBox(
                             width: 7,
                           ),
                           GestureDetector(
-                              onTap: _controller.toggleSignUp,
-                              child: Text(
-                                  _controller.isSignUp.value
-                                      ? 'Login now'
-                                      : 'Sign up now',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.lightGreen))),
+                            onTap: _controller.toggleSignUp,
+                            child: Text(
+                              _controller.isSignUp.value
+                                  ? 'Login now'
+                                  : 'Sign up now',
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.lightGreen),
+                            ),
+                          ),
                         ],
                       ),
                     )

@@ -7,13 +7,14 @@ class CustomTextButtonIcon extends StatelessWidget {
   final String label;
   final Function onPress;
   final Widget icon;
-  final Color color = AppColor.primaryColor;
+  Color backgroundColor = AppColor.primaryColor;
 
-  const CustomTextButtonIcon(
+  CustomTextButtonIcon(
       {Key? key,
       required this.label,
       required this.onPress,
-      required this.icon})
+      required this.icon,
+      backgroundColor})
       : super(key: key);
 
   @override
@@ -29,7 +30,7 @@ class CustomTextButtonIcon extends StatelessWidget {
           style: TextStyle(color: AppColor.white, fontSize: 20),
         ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(color),
+          backgroundColor: MaterialStateProperty.all(backgroundColor),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           )),

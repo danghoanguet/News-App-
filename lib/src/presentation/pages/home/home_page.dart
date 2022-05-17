@@ -30,12 +30,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hello "),
+        title: const Text("News Screen"),
         //automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
           onRefresh: () async => controller.getHeadlines(),
-          child: _buildArticleList()),
+          child: FutureBuilder(
+              future: controller.getHeadlines(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return _buildArticleList();
+              })),
     );
   }
 

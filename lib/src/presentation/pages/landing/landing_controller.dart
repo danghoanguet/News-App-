@@ -7,7 +7,22 @@ class LandingController extends GetxController {
   }
 
   void getToNewsPage() {
-    print('i was here');
     getToPageName(AppRoutes.home);
+  }
+
+  void getToMoviesPage() {
+    getToPageName(AppRoutes.movie);
+  }
+
+  void getToMcreditPage() {
+    getToPageName(AppRoutes.mcredit);
+  }
+
+  void getToMcreditSignUpPage() {
+    getToPageName(AppRoutes.mcreditDangky);
+  }
+
+  void getToSignInPage() {
+    getToPageName(AppRoutes.signin);
   }
 }

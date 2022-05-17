@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_clean_base/src/presentation/app_routes.dart';
+import 'package:getx_clean_base/src/presentation/pages/landing/landing_page.dart';
+import 'package:getx_clean_base/src/presentation/pages/mcredit/mcredit_dang_ky/mcredit_dang_ky_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -16,7 +18,8 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1)).then((value) {
-      Get.offNamed(AppRoutes.movie);
+      // Get.offNamed(AppRoutes.mcreditDangky);
+      Get.to(() => const LandingPage());
     });
   }
 
